@@ -1,6 +1,7 @@
 package application;
 
 import models.dao.DaoFactory;
+import models.dao.DepartmentDao;
 import models.dao.SellerDao;
 import models.entities.Department;
 import models.entities.Seller;
@@ -14,14 +15,15 @@ public class Program {
         Scanner sc = new Scanner(System.in);
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
+        DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 
         System.out.println("==== TEST 1: seller findById ====");
         Seller seller = sellerDao.findById(1);
         System.out.println(seller);
 
         System.out.println("\n==== TEST 2: seller findAllByDepartment ====");
-        Department department = new Department(2, null);
-        List<Seller> sellerList = sellerDao.findAllByDepartment(department);
+        Department dep = new Department(2, null);
+        List<Seller> sellerList = sellerDao.findAllByDepartment(dep);
         sellerList.forEach(System.out::println);
 
         System.out.println("\n==== TEST 3: seller findAll ====");
@@ -29,7 +31,7 @@ public class Program {
         allSellerList.forEach(System.out::println);
 
         System.out.println("\n==== TEST 4: seller Insert ====");
-        Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", LocalDate.now(), 4000.00, department);
+        Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", LocalDate.now(), 4000.00, dep);
         sellerDao.insert(newSeller);
         System.out.println("Inserted! New id = " + newSeller.getId());
 
@@ -44,5 +46,9 @@ public class Program {
         int id = sc.nextInt();
         sellerDao.deleteById(id);
         System.out.println("Delete completed!");
+
+        System.out.println("\n==== TEST 7: Department findById ====");
+        Department department = departmentDao.findById(1);
+        System.out.println(department);
     }
 }
