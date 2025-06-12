@@ -25,7 +25,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     public void insert(Department obj){
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("Insert INTO department " +
+            st = conn.prepareStatement("INSERT INTO department " +
                     "(Name) VALUE (?)",
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -68,7 +68,23 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public void deleteById(Integer id) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("DELETE FROM department " +
+                    "WHERE Id = ?");
 
+            st.setInt(1, id);
+
+            int rowAffected = st.executeUpdate();
+
+            if (rowAffected == 0) {
+                throw new DbException("Error while deleting Department! No rows affected.");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override

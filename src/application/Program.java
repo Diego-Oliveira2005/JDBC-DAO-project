@@ -42,7 +42,7 @@ public class Program {
         System.out.println("Update completed!");
 
         System.out.println("\n==== TEST 6: seller Delete ====");
-        System.out.println("Inset Id for deleting test");
+        System.out.println("Insert Id for deleting test");
         int id = sc.nextInt();
         sellerDao.deleteById(id);
         System.out.println("Delete completed!");
@@ -65,5 +65,11 @@ public class Program {
         department.setName("sungalunga");
         departmentDao.update(department);
         System.out.println("Update completed!");
+
+        System.out.println("\n==== TEST 11: Department Delete ====");
+        System.out.println("Insert Id for deleting test");
+        id = sc.nextInt();
+        departmentDao.deleteById(id);
+        System.out.println("Delete completed!");
     }
 }
