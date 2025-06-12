@@ -59,5 +59,11 @@ public class Program {
         Department newDepartment = new Department(null, "Linpus");
         departmentDao.insert(newDepartment);
         System.out.println("Inserted! New id = " + newDepartment.getId());
+
+        System.out.println("\n==== TEST 10: Department Update ====");
+        department = departmentDao.findById(2);
+        department.setName("sungalunga");
+        departmentDao.update(department);
+        System.out.println("Update completed!");
     }
 }
