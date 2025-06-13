@@ -14,7 +14,44 @@ public class Program {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        SellerDao sellerDao = DaoFactory.createSellerDao();
+        int option = 1;
+        while (option != 0) {
+            System.out.println("=== Options Panel ===");
+            System.out.println("1. Department Options");
+            System.out.println("2. Seller Options");
+            System.out.println("0. Quit");
+            System.out.println("=====================");
+            option = sc.nextInt();
+
+            switch (option) {
+                case 1 -> {
+                    clearConsole();
+                    System.out.println("=== Department Options ===");
+                    System.out.println("1. Find All Departments");
+                    System.out.println("2. Find Department by ID");
+                    System.out.println("3. Insert new Department");
+                    System.out.println("4. Update Department");
+                    System.out.println("5. Delete Department");
+                    System.out.println("0. Quit");
+                    System.out.println("==========================");
+                    option = sc.nextInt();
+                }
+                case 2 -> {
+                    clearConsole();
+                    System.out.println("=== Seller Options ===");
+                    System.out.println("1. Find All Sellers");
+                    System.out.println("2. Find All Sellers by Department ID");
+                    System.out.println("3. Find Seller by ID");
+                    System.out.println("4. Insert new Seller");
+                    System.out.println("5. Update Seller");
+                    System.out.println("6. Delete Seller");
+                    System.out.println("0. Quit");
+                    System.out.println("==========================");
+                    option = sc.nextInt();
+                }
+            }
+        }
+        /*SellerDao sellerDao = DaoFactory.createSellerDao();
         DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 
         System.out.println("==== TEST 1: seller findById ====");
@@ -70,6 +107,10 @@ public class Program {
         System.out.println("Insert Id for deleting test");
         id = sc.nextInt();
         departmentDao.deleteById(id);
-        System.out.println("Delete completed!");
+        System.out.println("Delete completed!");*/
+    }
+    public static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
