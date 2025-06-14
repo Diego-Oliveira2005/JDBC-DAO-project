@@ -1,0 +1,25 @@
+package application.ui;
+
+public class PrintOptions {
+    public static void printDepartmentOptions() {
+        System.out.println("=== Department Options ===" +
+                "\n1. Find All Departments" +
+                "\n2. Find Department by ID" +
+                "\n3. Insert new Department" +
+                "\n4. Update Department" +
+                "\n5. Delete Department" +
+                "\n0. Quit" +
+                "\n==========================");
+    }
+
+    public static void printSellerOptions() {
+        System.out.println("=== Seller Options ===" +
+                "\n1. Find All Sellers" +
+                "\n2. Find Seller by ID" +
+                "\n3. Insert new Seller" +
+                "\n4. Update Seller" +
+                "\n5. Delete Seller" +
+                "\n0. Quit" +
+                "\n==========================");
+    }
+}

@@ -1,5 +1,6 @@
 package application;
 
+import application.ui.PrintOptions;
 import models.dao.DaoFactory;
 import models.dao.DepartmentDao;
 import models.dao.SellerDao;
@@ -21,32 +22,23 @@ public class Program {
             System.out.println("2. Seller Options");
             System.out.println("0. Quit");
             System.out.println("=====================");
+
             option = sc.nextInt();
+            if (option == 0) {
+                continue;
+            }
 
             switch (option) {
                 case 1 -> {
-                    clearConsole();
-                    System.out.println("=== Department Options ===");
-                    System.out.println("1. Find All Departments");
-                    System.out.println("2. Find Department by ID");
-                    System.out.println("3. Insert new Department");
-                    System.out.println("4. Update Department");
-                    System.out.println("5. Delete Department");
-                    System.out.println("0. Quit");
-                    System.out.println("==========================");
-                    option = sc.nextInt();
+                    while (option != 0) {
+                        clearConsole();
+                        PrintOptions.printDepartmentOptions();
+                        option = sc.nextInt();
+                    }
                 }
                 case 2 -> {
                     clearConsole();
-                    System.out.println("=== Seller Options ===");
-                    System.out.println("1. Find All Sellers");
-                    System.out.println("2. Find All Sellers by Department ID");
-                    System.out.println("3. Find Seller by ID");
-                    System.out.println("4. Insert new Seller");
-                    System.out.println("5. Update Seller");
-                    System.out.println("6. Delete Seller");
-                    System.out.println("0. Quit");
-                    System.out.println("==========================");
+                    PrintOptions.printSellerOptions();
                     option = sc.nextInt();
                 }
             }
@@ -109,6 +101,7 @@ public class Program {
         departmentDao.deleteById(id);
         System.out.println("Delete completed!");*/
     }
+
     public static void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
