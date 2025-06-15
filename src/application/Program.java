@@ -52,6 +52,11 @@ public class Program {
                             case 4 -> {
 
                             }
+                            default -> {
+                                clearConsole();
+                                System.out.println("Invalid Option. Try again.");
+                                Thread.sleep(800);
+                            }
                         }
                     }
                 }
@@ -59,6 +64,32 @@ public class Program {
                     clearConsole();
                     PrintOptions.printSellerOptions();
                     option = sc.nextInt();
+
+                    switch (option) {
+                        case 1 -> {
+                            clearConsole();
+                            SellerDao sellerDao = DaoFactory.createSellerDao();
+                            List<Seller> sellerList = sellerDao.findAll();
+
+                            System.out.println("=== All Sellers ===");
+                            sellerList.forEach(System.out::println);
+                            System.out.println("===================");
+                        }
+                        case 2 -> {
+
+                        }
+                        case 3 -> {
+
+                        }
+                        case 4 -> {
+
+                        }
+                        default -> {
+                            clearConsole();
+                            System.out.println("Invalid Option. Try again.");
+                            Thread.sleep(800);
+                        }
+                    }
                 }
                 default -> {
                     clearConsole();
