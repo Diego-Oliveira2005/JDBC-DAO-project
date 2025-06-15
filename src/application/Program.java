@@ -1,6 +1,7 @@
 package application;
 
 import application.ui.PrintOptions;
+import com.sun.security.jgss.GSSUtil;
 import models.dao.DaoFactory;
 import models.dao.DepartmentDao;
 import models.dao.SellerDao;
@@ -33,6 +34,9 @@ public class Program {
                         option = sc.nextInt();
 
                         switch (option) {
+                            case 0 -> {
+                                System.out.println("Goodbye!");
+                            }
                             case 1 -> {
                                 clearConsole();
                                 DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
@@ -41,15 +45,41 @@ public class Program {
                                 System.out.println("=== All Departments ===");
                                 allDepartmentList.forEach(System.out::println);
                                 System.out.println("==========================");
+
                                 System.out.println("\nPress enter to continue");
+                                sc.nextLine();
+                                sc.nextLine();
                             }
                             case 2 -> {
+                                clearConsole();
+                                DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                                Department department;
 
+                                System.out.println("=== Find Department By ID ===");
+                                System.out.print("Enter the ID of the Department you want to find: ");
+
+                                department = departmentDao.findById(sc.nextInt());
+
+                                System.out.println("===========================");
+                                if (department != null) {
+                                    System.out.println(department);
+                                }
+                                else{
+                                    System.out.println("Department not found!");
+                                }
+                                System.out.println("===========================");
+
+                                System.out.println("\nPress enter to continue");
+                                sc.nextLine();
+                                sc.nextLine();
                             }
                             case 3 -> {
 
                             }
                             case 4 -> {
+
+                            }
+                            case 5 -> {
 
                             }
                             default -> {
@@ -66,6 +96,9 @@ public class Program {
                     option = sc.nextInt();
 
                     switch (option) {
+                        case 0 -> {
+                            System.out.println("Goodbye!");
+                        }
                         case 1 -> {
                             clearConsole();
                             SellerDao sellerDao = DaoFactory.createSellerDao();
@@ -74,6 +107,10 @@ public class Program {
                             System.out.println("=== All Sellers ===");
                             sellerList.forEach(System.out::println);
                             System.out.println("===================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
+                            sc.nextLine();
                         }
                         case 2 -> {
 
@@ -82,6 +119,9 @@ public class Program {
 
                         }
                         case 4 -> {
+
+                        }
+                        case 5 -> {
 
                         }
                         default -> {
