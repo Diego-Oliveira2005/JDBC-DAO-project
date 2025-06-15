@@ -1,6 +1,14 @@
 package application.ui;
 
 public class PrintOptions {
+    public static void printOptionsPanel() {
+        System.out.println("=== Options Panel ===");
+        System.out.println("1. Department Options");
+        System.out.println("2. Seller Options");
+        System.out.println("0. Quit");
+        System.out.println("=====================");
+    }
+
     public static void printDepartmentOptions() {
         System.out.println("=== Department Options ===" +
                 "\n1. Find All Departments" +

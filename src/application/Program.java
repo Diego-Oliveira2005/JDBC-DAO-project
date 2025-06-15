@@ -12,18 +12,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
 
         int option = 1;
         while (option != 0) {
-            System.out.println("=== Options Panel ===");
-            System.out.println("1. Department Options");
-            System.out.println("2. Seller Options");
-            System.out.println("0. Quit");
-            System.out.println("=====================");
-
+            clearConsole();
+            PrintOptions.printOptionsPanel();
             option = sc.nextInt();
+
             if (option == 0) {
                 continue;
             }
@@ -34,12 +31,39 @@ public class Program {
                         clearConsole();
                         PrintOptions.printDepartmentOptions();
                         option = sc.nextInt();
+
+                        switch (option) {
+                            case 1 -> {
+                                clearConsole();
+                                DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                                List<Department> allDepartmentList = departmentDao.findAll();
+
+                                System.out.println("=== All Departments ===");
+                                allDepartmentList.forEach(System.out::println);
+                                System.out.println("==========================");
+                                System.out.println("\nPress enter to continue");
+                            }
+                            case 2 -> {
+
+                            }
+                            case 3 -> {
+
+                            }
+                            case 4 -> {
+
+                            }
+                        }
                     }
                 }
                 case 2 -> {
                     clearConsole();
                     PrintOptions.printSellerOptions();
                     option = sc.nextInt();
+                }
+                default -> {
+                    clearConsole();
+                    System.out.println("Invalid Option. Try again.");
+                    Thread.sleep(800);
                 }
             }
         }
