@@ -24,9 +24,10 @@ public class PrintOptions {
         System.out.println("=== Seller Options ===" +
                 "\n1. Find All Sellers" +
                 "\n2. Find Seller by ID" +
-                "\n3. Insert new Seller" +
-                "\n4. Update Seller" +
-                "\n5. Delete Seller" +
+                "\n3. Find All Sellers by Department" +
+                "\n4. Insert new Seller" +
+                "\n5. Update Seller" +
+                "\n6. Delete Seller" +
                 "\n0. Quit" +
                 "\n==========================");
     }

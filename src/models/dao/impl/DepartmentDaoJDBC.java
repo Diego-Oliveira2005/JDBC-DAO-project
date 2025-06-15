@@ -36,6 +36,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
                 ResultSet rs = st.getGeneratedKeys();
                 if (rs.next()) {
                     obj.setId(rs.getInt(1));
+                    System.out.println("Department inserted successfully!");
                 }
                 DB.closeResultSet(rs);
             }

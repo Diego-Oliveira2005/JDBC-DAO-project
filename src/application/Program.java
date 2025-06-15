@@ -1,7 +1,6 @@
 package application;
 
 import application.ui.PrintOptions;
-import com.sun.security.jgss.GSSUtil;
 import models.dao.DaoFactory;
 import models.dao.DepartmentDao;
 import models.dao.SellerDao;
@@ -20,6 +19,7 @@ public class Program {
         while (option != 0) {
             clearConsole();
             PrintOptions.printOptionsPanel();
+            System.out.print("Select an option: ");
             option = sc.nextInt();
 
             if (option == 0) {
@@ -39,6 +39,7 @@ public class Program {
                         }
                         case 1 -> {
                             clearConsole();
+                            sc.nextLine();
                             DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
                             List<Department> allDepartmentList = departmentDao.findAll();
 
@@ -47,7 +48,6 @@ public class Program {
                             System.out.println("==========================");
 
                             System.out.println("\nPress enter to continue");
-                            sc.nextLine();
                             sc.nextLine();
                         }
                         case 2 -> {
@@ -59,6 +59,7 @@ public class Program {
                             System.out.print("Enter the ID of the Department you want to find: ");
 
                             department = departmentDao.findById(sc.nextInt());
+                            sc.nextLine();
 
                             System.out.println("===========================");
                             if (department != null) {
@@ -70,10 +71,22 @@ public class Program {
 
                             System.out.println("\nPress enter to continue");
                             sc.nextLine();
-                            sc.nextLine();
                         }
                         case 3 -> {
+                            clearConsole();
+                            DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                            Department department;
 
+                            System.out.println("=== Insertion of Department ===");
+                            System.out.print("Insert the Name of the Department: ");
+
+                            sc.nextLine();
+                            department = new Department(null, sc.nextLine());
+                            departmentDao.insert(department);
+                            System.out.println("===========================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
                         }
                         case 4 -> {
 
@@ -141,6 +154,9 @@ public class Program {
 
                         }
                         case 5 -> {
+
+                        }
+                        case 6 -> {
 
                         }
                         default -> {
