@@ -23,72 +23,71 @@ public class Program {
             option = sc.nextInt();
 
             if (option == 0) {
+                System.out.println("Goodbye!");
                 continue;
             }
 
             switch (option) {
                 case 1 -> {
-                    while (option != 0) {
-                        clearConsole();
-                        PrintOptions.printDepartmentOptions();
-                        option = sc.nextInt();
+                    clearConsole();
+                    PrintOptions.printDepartmentOptions();
+                    option = sc.nextInt();
 
-                        switch (option) {
-                            case 0 -> {
-                                System.out.println("Goodbye!");
+                    switch (option) {
+                        case 0 -> {
+                            System.out.println("Goodbye!");
+                        }
+                        case 1 -> {
+                            clearConsole();
+                            DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                            List<Department> allDepartmentList = departmentDao.findAll();
+
+                            System.out.println("=== All Departments ===");
+                            allDepartmentList.forEach(System.out::println);
+                            System.out.println("==========================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
+                            sc.nextLine();
+                        }
+                        case 2 -> {
+                            clearConsole();
+                            DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                            Department department;
+
+                            System.out.println("=== Find Department By ID ===");
+                            System.out.print("Enter the ID of the Department you want to find: ");
+
+                            department = departmentDao.findById(sc.nextInt());
+
+                            System.out.println("===========================");
+                            if (department != null) {
+                                System.out.println(department);
+                            } else {
+                                System.out.println("Department not found!");
                             }
-                            case 1 -> {
-                                clearConsole();
-                                DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
-                                List<Department> allDepartmentList = departmentDao.findAll();
+                            System.out.println("===========================");
 
-                                System.out.println("=== All Departments ===");
-                                allDepartmentList.forEach(System.out::println);
-                                System.out.println("==========================");
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
+                            sc.nextLine();
+                        }
+                        case 3 -> {
 
-                                System.out.println("\nPress enter to continue");
-                                sc.nextLine();
-                                sc.nextLine();
-                            }
-                            case 2 -> {
-                                clearConsole();
-                                DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
-                                Department department;
+                        }
+                        case 4 -> {
 
-                                System.out.println("=== Find Department By ID ===");
-                                System.out.print("Enter the ID of the Department you want to find: ");
+                        }
+                        case 5 -> {
 
-                                department = departmentDao.findById(sc.nextInt());
-
-                                System.out.println("===========================");
-                                if (department != null) {
-                                    System.out.println(department);
-                                }
-                                else{
-                                    System.out.println("Department not found!");
-                                }
-                                System.out.println("===========================");
-
-                                System.out.println("\nPress enter to continue");
-                                sc.nextLine();
-                                sc.nextLine();
-                            }
-                            case 3 -> {
-
-                            }
-                            case 4 -> {
-
-                            }
-                            case 5 -> {
-
-                            }
-                            default -> {
-                                clearConsole();
-                                System.out.println("Invalid Option. Try again.");
-                                Thread.sleep(800);
-                            }
+                        }
+                        default -> {
+                            clearConsole();
+                            System.out.println("Invalid Option. Try again.");
+                            Thread.sleep(800);
                         }
                     }
+
                 }
                 case 2 -> {
                     clearConsole();
@@ -113,6 +112,26 @@ public class Program {
                             sc.nextLine();
                         }
                         case 2 -> {
+                            clearConsole();
+                            SellerDao sellerDao = DaoFactory.createSellerDao();
+                            Seller seller;
+
+                            System.out.println("=== Find Seller By ID ===");
+                            System.out.print("Enter the ID of the Seller you want to find: ");
+
+                            seller = sellerDao.findById(sc.nextInt());
+
+                            System.out.println("===========================");
+                            if (seller != null) {
+                                System.out.println(seller);
+                            } else {
+                                System.out.println("Seller not found!");
+                            }
+                            System.out.println("===========================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
+                            sc.nextLine();
 
                         }
                         case 3 -> {
