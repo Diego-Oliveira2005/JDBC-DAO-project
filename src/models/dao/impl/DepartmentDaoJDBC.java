@@ -59,7 +59,13 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             st.setString(1, obj.getName());
             st.setInt(2, obj.getId());
 
-            st.executeUpdate();
+            if (st.executeUpdate() >= 1) {
+                System.out.print("Department updated Successfully!");
+            } else {
+                System.out.print("This Department does not exist!");
+            }
+
+            System.out.println();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {

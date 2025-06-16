@@ -20,11 +20,11 @@ public class Program {
         while (option != 0) {
             clearConsole();
             PrintOptions.printOptionsPanel();
-            System.out.print("Select an option: ");
             option = sc.nextInt();
 
             if (option == 0) {
-                System.out.println("Goodbye!");
+                clearConsole();
+                System.out.print("Goodbye!");
                 continue;
             }
 
@@ -36,7 +36,8 @@ public class Program {
 
                     switch (option) {
                         case 0 -> {
-                            System.out.println("Goodbye!");
+                            clearConsole();
+                            System.out.print("Goodbye!");
                         }
                         case 1 -> {
                             clearConsole();
@@ -93,7 +94,28 @@ public class Program {
                             sc.nextLine();
                         }
                         case 4 -> {
+                            clearConsole();
 
+                            DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                            List<Department> allDepartmentList = departmentDao.findAll();
+                            Department department;
+
+                            System.out.println("=== Update of Department by ID ===");
+
+                            System.out.println("=== Existing departments ===");
+                            allDepartmentList.forEach(System.out::println);
+                            System.out.println("============================");
+
+                            System.out.print("Enter the ID of the Department you want to update: ");
+                            int id = sc.nextInt();
+                            sc.nextLine();
+                            System.out.printf("Enter the new Name to the Department of ID(%d): ", id);
+                            String name = sc.nextLine();
+                            departmentDao.update(new Department(id, name));
+                            System.out.println("=================================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
                         }
                         case 5 -> {
 
@@ -114,7 +136,8 @@ public class Program {
 
                     switch (option) {
                         case 0 -> {
-                            System.out.println("Goodbye!");
+                            clearConsole();
+                            System.out.print("Goodbye!");
                         }
                         case 1 -> {
                             clearConsole();
@@ -194,7 +217,7 @@ public class Program {
                             double sellerSalary = sc.nextDouble();
 
                             System.out.println("Insert the ID of the Department you want to add to seller.");
-                            System.out.println("=== Existing departments ===");
+                            System.out.println("=== Existing Departments ===");
                             allDepartmentList.forEach(System.out::println);
                             System.out.println("============================");
                             System.out.print("Insert the Department ID: ");
@@ -204,6 +227,7 @@ public class Program {
                             sellerDao.insert(new Seller(null, sellerName, sellerEmail, sellerBirthDate,
                                     sellerSalary, new Department(departmentId, null)));
                             System.out.println("Seller Inserted Successfully!");
+                            System.out.println("=============================");
 
                             System.out.println("\nPress enter to continue");
                             sc.nextLine();

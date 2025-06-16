@@ -2,33 +2,62 @@ package application.ui;
 
 public class PrintOptions {
     public static void printOptionsPanel() {
-        System.out.println("=== Options Panel ===");
-        System.out.println("1. Department Options");
-        System.out.println("2. Seller Options");
-        System.out.println("0. Quit");
-        System.out.println("=====================");
+        System.out.println("""
+                
+                === Options Panel ===\
+                
+                1. Department Options\
+                
+                2. Seller Options\
+                
+                0. Quit\
+                
+                =====================\
+                
+                Select an option:\s""");
     }
 
     public static void printDepartmentOptions() {
-        System.out.println("=== Department Options ===" +
-                "\n1. Find All Departments" +
-                "\n2. Find Department by ID" +
-                "\n3. Insert new Department" +
-                "\n4. Update Department" +
-                "\n5. Delete Department" +
-                "\n0. Quit" +
-                "\n==========================");
+        System.out.println("""
+                === Department Options ===\
+                
+                1. Find All Departments\
+                
+                2. Find Department by ID\
+                
+                3. Insert new Department\
+                
+                4. Update Department\
+                
+                5. Delete Department\
+                
+                0. Quit\
+                
+                ==========================\
+                
+                Select an option:\s""");
     }
 
     public static void printSellerOptions() {
-        System.out.println("=== Seller Options ===" +
-                "\n1. Find All Sellers" +
-                "\n2. Find Seller by ID" +
-                "\n3. Find All Sellers by Department" +
-                "\n4. Insert new Seller" +
-                "\n5. Update Seller" +
-                "\n6. Delete Seller" +
-                "\n0. Quit" +
-                "\n==========================");
+        System.out.println("""
+                === Seller Options ===\
+                
+                1. Find All Sellers\
+                
+                2. Find Seller by ID\
+                
+                3. Find All Sellers by Department\
+                
+                4. Insert new Seller\
+                
+                5. Update Seller\
+                
+                6. Delete Seller\
+                
+                0. Quit\
+                
+                ==========================\
+                
+                Select an option:\s""");
     }
 }
