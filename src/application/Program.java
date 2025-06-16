@@ -74,13 +74,13 @@ public class Program {
                         }
                         case 3 -> {
                             clearConsole();
+                            sc.nextLine();
                             DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
                             Department department;
 
                             System.out.println("=== Insertion of Department ===");
                             System.out.print("Insert the Name of the Department: ");
 
-                            sc.nextLine();
                             department = new Department(null, sc.nextLine());
                             departmentDao.insert(department);
                             System.out.println("===========================");
@@ -98,6 +98,7 @@ public class Program {
                             clearConsole();
                             System.out.println("Invalid Option. Try again.");
                             Thread.sleep(800);
+                            clearConsole();
                         }
                     }
 
@@ -113,6 +114,7 @@ public class Program {
                         }
                         case 1 -> {
                             clearConsole();
+                            sc.nextLine();
                             SellerDao sellerDao = DaoFactory.createSellerDao();
                             List<Seller> sellerList = sellerDao.findAll();
 
@@ -121,7 +123,6 @@ public class Program {
                             System.out.println("===================");
 
                             System.out.println("\nPress enter to continue");
-                            sc.nextLine();
                             sc.nextLine();
                         }
                         case 2 -> {
@@ -133,6 +134,7 @@ public class Program {
                             System.out.print("Enter the ID of the Seller you want to find: ");
 
                             seller = sellerDao.findById(sc.nextInt());
+                            sc.nextLine();
 
                             System.out.println("===========================");
                             if (seller != null) {
@@ -144,11 +146,25 @@ public class Program {
 
                             System.out.println("\nPress enter to continue");
                             sc.nextLine();
-                            sc.nextLine();
 
                         }
                         case 3 -> {
+                            clearConsole();
+                            SellerDao sellerDao = DaoFactory.createSellerDao();
+                            List<Seller> sellerList;
 
+                            System.out.println("=== Find All Sellers by Department ===");
+                            System.out.print("Enter the ID of the Department you want to find: ");
+
+                            sellerList = sellerDao.findAllByDepartment(new Department(sc.nextInt(), null));
+                            sc.nextLine();
+
+                            System.out.println("===========================");
+                            sellerList.forEach(System.out::println);
+                            System.out.println("===========================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
                         }
                         case 4 -> {
 
@@ -163,6 +179,7 @@ public class Program {
                             clearConsole();
                             System.out.println("Invalid Option. Try again.");
                             Thread.sleep(800);
+                            clearConsole();
                         }
                     }
                 }
@@ -170,6 +187,7 @@ public class Program {
                     clearConsole();
                     System.out.println("Invalid Option. Try again.");
                     Thread.sleep(800);
+                    clearConsole();
                 }
             }
         }
