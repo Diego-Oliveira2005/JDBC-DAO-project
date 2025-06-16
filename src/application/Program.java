@@ -8,6 +8,7 @@ import models.entities.Department;
 import models.entities.Seller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,6 +41,7 @@ public class Program {
                         case 1 -> {
                             clearConsole();
                             sc.nextLine();
+
                             DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
                             List<Department> allDepartmentList = departmentDao.findAll();
 
@@ -52,6 +54,7 @@ public class Program {
                         }
                         case 2 -> {
                             clearConsole();
+
                             DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
                             Department department;
 
@@ -75,6 +78,7 @@ public class Program {
                         case 3 -> {
                             clearConsole();
                             sc.nextLine();
+
                             DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
                             Department department;
 
@@ -115,6 +119,7 @@ public class Program {
                         case 1 -> {
                             clearConsole();
                             sc.nextLine();
+
                             SellerDao sellerDao = DaoFactory.createSellerDao();
                             List<Seller> sellerList = sellerDao.findAll();
 
@@ -127,6 +132,7 @@ public class Program {
                         }
                         case 2 -> {
                             clearConsole();
+
                             SellerDao sellerDao = DaoFactory.createSellerDao();
                             Seller seller;
 
@@ -146,10 +152,10 @@ public class Program {
 
                             System.out.println("\nPress enter to continue");
                             sc.nextLine();
-
                         }
                         case 3 -> {
                             clearConsole();
+
                             SellerDao sellerDao = DaoFactory.createSellerDao();
                             List<Seller> sellerList;
 
@@ -167,7 +173,40 @@ public class Program {
                             sc.nextLine();
                         }
                         case 4 -> {
+                            clearConsole();
+                            sc.nextLine();
 
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                            SellerDao sellerDao = DaoFactory.createSellerDao();
+                            Seller seller;
+
+                            DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                            List<Department> allDepartmentList = departmentDao.findAll();
+
+                            System.out.println("=== Insertion of Seller ===");
+                            System.out.print("Insert the Name of the Seller: ");
+                            String sellerName = sc.nextLine();
+                            System.out.print("Insert the Email of the Seller: ");
+                            String sellerEmail = sc.nextLine();
+                            System.out.print("Insert the Birth Date of the Seller (yyyy-MM-dd): ");
+                            LocalDate sellerBirthDate = LocalDate.parse(sc.nextLine(), formatter);
+                            System.out.print("Insert the Base Salary of the Seller: ");
+                            double sellerSalary = sc.nextDouble();
+
+                            System.out.println("Insert the ID of the Department you want to add to seller.");
+                            System.out.println("=== Existing departments ===");
+                            allDepartmentList.forEach(System.out::println);
+                            System.out.println("============================");
+                            System.out.print("Insert the Department ID: ");
+                            int departmentId = sc.nextInt();
+                            sc.nextLine();
+
+                            sellerDao.insert(new Seller(null, sellerName, sellerEmail, sellerBirthDate,
+                                    sellerSalary, new Department(departmentId, null)));
+                            System.out.println("Seller Inserted Successfully!");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
                         }
                         case 5 -> {
 
