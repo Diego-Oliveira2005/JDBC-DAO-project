@@ -61,7 +61,7 @@ public class Program {
                             DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
                             Department department;
 
-                            System.out.println("=== Find Department By ID ===");
+                            System.out.println("=== Find Department by ID ===");
                             System.out.print("Enter the ID of the Department you want to find: ");
 
                             department = departmentDao.findById(sc.nextInt());
@@ -111,7 +111,7 @@ public class Program {
                             System.out.print("Enter the ID of the Department you want to update: ");
                             int id = sc.nextInt();
                             sc.nextLine();
-                            System.out.printf("Enter the new Name to the Department of ID(%d): ", id);
+                            System.out.print("Enter the new Name to the Department: ");
                             String name = sc.nextLine();
                             departmentDao.update(new Department(id, name));
                             System.out.println("=================================");
@@ -120,7 +120,24 @@ public class Program {
                             sc.nextLine();
                         }
                         case 5 -> {
+                            clearConsole();
 
+                            DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                            List<Department> allDepartmentList = departmentDao.findAll();
+
+                            System.out.println("=== Delete Department by ID ===");
+                            System.out.println("===============================");
+                            allDepartmentList.forEach(System.out::println);
+                            System.out.println("===============================");
+
+                            System.out.print("Enter the ID of the Department you want to Delete: ");
+                            int id = sc.nextInt();
+                            sc.nextLine();
+                            departmentDao.deleteById(id);
+                            System.out.println("==========================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
                         }
                         default -> {
                             clearConsole();
@@ -162,7 +179,7 @@ public class Program {
                             SellerDao sellerDao = DaoFactory.createSellerDao();
                             Seller seller;
 
-                            System.out.println("=== Find Seller By ID ===");
+                            System.out.println("=== Find Seller by ID ===");
                             System.out.print("Enter the ID of the Seller you want to find: ");
 
                             seller = sellerDao.findById(sc.nextInt());

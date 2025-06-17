@@ -61,7 +61,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             st.setString(1, obj.getName());
             st.setInt(2, obj.getId());
 
-            if (st.executeUpdate() >= 1) {
+            if (st.executeUpdate() > 0) {
                 System.out.print("Department updated Successfully!");
             } else {
                 throw new DbException("Error while updating Department! No rows affected.");
@@ -86,10 +86,10 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
             int rowAffected = st.executeUpdate();
 
-            if (rowAffected >=  0) {
-                System.out.println("Department updated successfully!");
+            if (rowAffected > 0) {
+                System.out.println("Department Deleted successfully!");
             } else {
-                throw new DbException("Error while deleting Deleted! No rows affected.");
+                throw new DbException("Error while deleting Department! No rows affected.");
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());

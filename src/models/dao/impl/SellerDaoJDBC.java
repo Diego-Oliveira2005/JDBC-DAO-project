@@ -76,7 +76,7 @@ public class SellerDaoJDBC implements SellerDao {
             st.setInt(6, obj.getId());
 
             int rowAffected = st.executeUpdate();
-            if (rowAffected >= 1) {
+            if (rowAffected > 0) {
                 System.out.println("Seller updated successfully!");
             } else {
                 throw new DbException("Error while updating seller! No rows affected.");
@@ -100,7 +100,7 @@ public class SellerDaoJDBC implements SellerDao {
 
             int rowAffected = st.executeUpdate();
 
-            if (rowAffected >=  0) {
+            if (rowAffected > 0) {
                 System.out.println("Seller deleted successfully!");
             } else {
                 throw new DbException("Error while deleting seller! No rows affected.");
