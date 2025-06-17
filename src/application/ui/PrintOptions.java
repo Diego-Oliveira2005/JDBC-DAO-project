@@ -12,9 +12,7 @@ public class PrintOptions {
                 
                 0. Quit\
                 
-                =====================\
-                
-                Select an option:\s""");
+                =====================\s""");
     }
 
     public static void printDepartmentOptions() {
@@ -33,9 +31,7 @@ public class PrintOptions {
                 
                 0. Quit\
                 
-                ==========================\
-                
-                Select an option:\s""");
+                ==========================\s""");
     }
 
     public static void printSellerOptions() {
@@ -56,8 +52,6 @@ public class PrintOptions {
                 
                 0. Quit\
                 
-                ==========================\
-                
-                Select an option:\s""");
+                ==========================\s""");
     }
 }

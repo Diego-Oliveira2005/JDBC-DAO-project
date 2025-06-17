@@ -47,6 +47,7 @@ public class SellerDaoJDBC implements SellerDao {
                 if (rs.next()) {
                     int id = rs.getInt(1);
                     obj.setId(id);
+                    System.out.println("Seller inserted successfully!");
                 }
                 DB.closeResultSet(rs);
             } else {
@@ -74,7 +75,13 @@ public class SellerDaoJDBC implements SellerDao {
             st.setInt(5, obj.getDepartment().getId());
             st.setInt(6, obj.getId());
 
-            st.executeUpdate();
+            int rowAffected = st.executeUpdate();
+            if (rowAffected >= 1) {
+                System.out.println("Seller updated successfully!");
+            } else {
+                throw new DbException("Error while updating seller! No rows affected.");
+            }
+
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -93,7 +100,9 @@ public class SellerDaoJDBC implements SellerDao {
 
             int rowAffected = st.executeUpdate();
 
-            if (rowAffected == 0) {
+            if (rowAffected >=  0) {
+                System.out.println("Seller deleted successfully!");
+            } else {
                 throw new DbException("Error while deleting seller! No rows affected.");
             }
 

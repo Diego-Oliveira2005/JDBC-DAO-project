@@ -20,6 +20,7 @@ public class Program {
         while (option != 0) {
             clearConsole();
             PrintOptions.printOptionsPanel();
+            System.out.print("select an option: ");
             option = sc.nextInt();
 
             if (option == 0) {
@@ -32,6 +33,7 @@ public class Program {
                 case 1 -> {
                     clearConsole();
                     PrintOptions.printDepartmentOptions();
+                    System.out.print("select an option: ");
                     option = sc.nextInt();
 
                     switch (option) {
@@ -132,6 +134,7 @@ public class Program {
                 case 2 -> {
                     clearConsole();
                     PrintOptions.printSellerOptions();
+                    System.out.print("select an option: ");
                     option = sc.nextInt();
 
                     switch (option) {
@@ -220,6 +223,7 @@ public class Program {
                             System.out.println("=== Existing Departments ===");
                             allDepartmentList.forEach(System.out::println);
                             System.out.println("============================");
+
                             System.out.print("Insert the Department ID: ");
                             int departmentId = sc.nextInt();
                             sc.nextLine();
@@ -233,7 +237,48 @@ public class Program {
                             sc.nextLine();
                         }
                         case 5 -> {
+                            clearConsole();
 
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                            SellerDao sellerDao = DaoFactory.createSellerDao();
+                            Seller seller;
+                            List<Seller> sellerList = sellerDao.findAll();
+
+                            DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+                            List<Department> allDepartmentList = departmentDao.findAll();
+
+                            System.out.println("=== Update Seller by ID ===");
+                            System.out.println("===========================");
+                            sellerList.forEach(System.out::println);
+                            System.out.println("===========================");
+
+                            System.out.print("Enter the ID of the Seller you want to update: ");
+                            int sellerId = sc.nextInt();
+                            sc.nextLine();
+                            System.out.print("Enter the new Name of the Seller: ");
+                            String sellerName = sc.nextLine();
+                            System.out.print("Enter the new Email of the Seller: ");
+                            String sellerEmail = sc.nextLine();
+                            System.out.print("Enter the new Birth Date of the Seller(yyyy-MM-dd): ");
+                            LocalDate sellerBirthDate = LocalDate.parse(sc.nextLine(), formatter);
+                            System.out.print("Enter the new Base Salary of the Seller: ");
+                            double sellerSalary = sc.nextDouble();
+
+                            System.out.println("============================");
+                            allDepartmentList.forEach(System.out::println);
+                            System.out.println("============================");
+
+                            System.out.print("Enter the ID of the Department for the new Seller: ");
+                            int departmentId = sc.nextInt();
+                            sc.nextLine();
+
+                            seller = new Seller(sellerId, sellerName, sellerEmail, sellerBirthDate,
+                                    sellerSalary, new Department(departmentId, null));
+                            sellerDao.update(seller);
+                            System.out.println("============================");
+
+                            System.out.println("\nPress enter to continue");
+                            sc.nextLine();
                         }
                         case 6 -> {
 
